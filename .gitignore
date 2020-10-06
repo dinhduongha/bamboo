@@ -9,7 +9,7 @@ bin/
 aspnet-core/src/Bamboo.Web.Host/App_Data/Logs/
 aspnet-core/src/Bamboo.Web.Mvc/App_Data/Logs/
 aspnet-core/src/Bamboo.Migrator/Logs/Logs.txt
-
+thirdParty/
 # User-specific files
 *.rsuser
 *.suo

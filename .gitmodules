@@ -1,0 +1,3 @@
+[submodule "thirdParty/bamboomodules"]
+	path = thirdParty/bamboomodules
+	url = https://github.com/dinhduongha/bamboomodules.git
