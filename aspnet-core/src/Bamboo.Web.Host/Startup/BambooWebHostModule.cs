@@ -3,11 +3,14 @@ using Microsoft.Extensions.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Bamboo.Configuration;
+using Bamboo.Base;
 
 namespace Bamboo.Web.Host.Startup
 {
     [DependsOn(
-       typeof(BambooWebCoreModule))]
+       typeof(BambooWebCoreModule),
+       typeof(BambooBaseApplicationModule)
+    )]
     public class BambooWebHostModule: AbpModule
     {
         private readonly IWebHostEnvironment _env;

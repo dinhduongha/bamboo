@@ -1,4 +1,5 @@
 ﻿using Abp.EntityFrameworkCore.Configuration;
+using Abp.IdentityServer4vNext;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace Bamboo.EntityFrameworkCore
 {
     [DependsOn(
         typeof(BambooCoreModule), 
-        typeof(AbpZeroCoreEntityFrameworkCoreModule))]
+        typeof(AbpZeroCoreIdentityServervNextEntityFrameworkCoreModule))]
     public class BambooEntityFrameworkModule : AbpModule
     {
         /* Used it tests to skip dbcontext registration, in order to use in-memory database of EF Core */

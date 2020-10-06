@@ -19,9 +19,9 @@ namespace Bamboo.Authorization.Users
             var user = new User
             {
                 TenantId = tenantId,
-                UserName = AdminUserName,
+                UserName = emailAddress,
                 Name = AdminUserName,
-                Surname = AdminUserName,
+                Surname = emailAddress,
                 EmailAddress = emailAddress,
                 Roles = new List<UserRole>()
             };

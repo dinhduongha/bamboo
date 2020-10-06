@@ -16,11 +16,12 @@ namespace Bamboo.EntityFrameworkCore.Seed.Tenants
     {
         private readonly BambooDbContext _context;
         private readonly int _tenantId;
-
-        public TenantRoleAndUserBuilder(BambooDbContext context, int tenantId)
+        private readonly string _email;
+        public TenantRoleAndUserBuilder(BambooDbContext context, int tenantId, string email = "admin@blazor.me")
         {
             _context = context;
             _tenantId = tenantId;
+            _email = email;
         }
 
         public void Create()
@@ -69,10 +70,10 @@ namespace Bamboo.EntityFrameworkCore.Seed.Tenants
 
             // Admin user
 
-            var adminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == AbpUserBase.AdminUserName);
+            var adminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == _email);
             if (adminUser == null)
             {
-                adminUser = User.CreateTenantAdminUser(_tenantId, "admin@defaulttenant.com");
+                adminUser = User.CreateTenantAdminUser(_tenantId, _email);
                 adminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUser, "123qwe");
                 adminUser.IsEmailConfirmed = true;
                 adminUser.IsActive = true;

@@ -76,7 +76,7 @@ namespace Bamboo.EntityFrameworkCore.Seed.Host
                     UserName = AbpUserBase.AdminUserName,
                     Name = "admin",
                     Surname = "admin",
-                    EmailAddress = "admin@aspnetboilerplate.com",
+                    EmailAddress = "root@blazor.me",
                     IsEmailConfirmed = true,
                     IsActive = true
                 };
