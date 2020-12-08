@@ -1,30 +1,30 @@
-﻿using Abp.AutoMapper;
-using Abp.Modules;
-using Abp.Reflection.Extensions;
-using Bamboo.Authorization;
+﻿using Volo.Abp.Account;
+using Volo.Abp.AutoMapper;
+using Volo.Abp.FeatureManagement;
+using Volo.Abp.Identity;
+using Volo.Abp.Modularity;
+using Volo.Abp.PermissionManagement;
+using Volo.Abp.TenantManagement;
 
 namespace Bamboo
 {
     [DependsOn(
-        typeof(BambooCoreModule), 
-        typeof(AbpAutoMapperModule))]
+        typeof(BambooDomainModule),
+        typeof(AbpAccountApplicationModule),
+        typeof(BambooApplicationContractsModule),
+        typeof(AbpIdentityApplicationModule),
+        typeof(AbpPermissionManagementApplicationModule),
+        typeof(AbpTenantManagementApplicationModule),
+        typeof(AbpFeatureManagementApplicationModule)
+        )]
     public class BambooApplicationModule : AbpModule
     {
-        public override void PreInitialize()
+        public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            Configuration.Authorization.Providers.Add<BambooAuthorizationProvider>();
-        }
-
-        public override void Initialize()
-        {
-            var thisAssembly = typeof(BambooApplicationModule).GetAssembly();
-
-            IocManager.RegisterAssemblyByConvention(thisAssembly);
-
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(
-                // Scan the assembly for classes which inherit from AutoMapper.Profile
-                cfg => cfg.AddMaps(thisAssembly)
-            );
+            Configure<AbpAutoMapperOptions>(options =>
+            {
+                options.AddMaps<BambooApplicationModule>();
+            });
         }
     }
 }

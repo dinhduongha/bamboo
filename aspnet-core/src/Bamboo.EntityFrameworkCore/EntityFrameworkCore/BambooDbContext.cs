@@ -1,52 +1,58 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Abp.Zero.EntityFrameworkCore;
-
-using Bamboo.Authorization.Roles;
-using Bamboo.Authorization.Users;
-using Bamboo.MultiTenancy;
-using Abp.IdentityServer4vNext;
-using Bamboo.Base.Core;
+using Bamboo.Users;
+using Volo.Abp.Data;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+using Volo.Abp.Identity;
+using Volo.Abp.Users.EntityFrameworkCore;
 
 namespace Bamboo.EntityFrameworkCore
 {
-    public class BambooDbContext : AbpZeroDbContext<Tenant, Role, User, BambooDbContext>, IAbpPersistedGrantDbContext
+    /* This is your actual DbContext used on runtime.
+     * It includes only your entities.
+     * It does not include entities of the used modules, because each module has already
+     * its own DbContext class. If you want to share some database tables with the used modules,
+     * just create a structure like done for AppUser.
+     *
+     * Don't use this DbContext for database migrations since it does not contain tables of the
+     * used modules (as explained above). See BambooMigrationsDbContext for migrations.
+     */
+    [ConnectionStringName("Default")]
+    public class BambooDbContext : AbpDbContext<BambooDbContext>
     {
-        /* Define a DbSet for each entity of the application */
-        public DbSet<Bank> Bank { get; set; }
-        public DbSet<BankAccount> BankAccount { get; set; }
-        public DbSet<Country> Country { get; set; }
-        public DbSet<CountryGroup> CountryGroup { get; set; }
-        public DbSet<CountryState> CountryState { get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
-        public DbSet<Currency> Currency { get; set; }
-        public DbSet<CurrencyRate> CurrencyRate { get; set; }
-
-        public DbSet<PartnerTitle> PartnerTitle { get; set; }
-        public DbSet<PartnerCategory> PartnerCatagory { get; set; }
-        public DbSet<Partner> Partner { get; set; }
-
-
-        public DbSet<PersistedGrantEntity> PersistedGrants { get; set; }
+        /* Add DbSet properties for your Aggregate Roots / Entities here.
+         * Also map them inside BambooDbContextModelCreatingExtensions.ConfigureBamboo
+         */
 
         public BambooDbContext(DbContextOptions<BambooDbContext> options)
             : base(options)
         {
+
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-#if HAS_DB_POSTGRESQL
-            modelBuilder.InitExtension();
-#endif
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ConfigurePersistedGrantEntity();
+            base.OnModelCreating(builder);
 
-#if HAS_DB_POSTGRESQL
-            modelBuilder.UseSerialColumns();
-            modelBuilder.StringSize();
-            modelBuilder.PostgreSQLDataType();
-            modelBuilder.SnakeCase();
-#endif
+            /* Configure the shared tables (with included modules) here */
+
+            builder.Entity<AppUser>(b =>
+            {
+                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
+                
+                b.ConfigureByConvention();
+                b.ConfigureAbpUser();
+
+                /* Configure mappings for your additional properties
+                 * Also see the BambooEfCoreEntityExtensionMappings class
+                 */
+            });
+
+            /* Configure your own tables/entities inside the ConfigureBamboo method */
+
+            builder.ConfigureBamboo();
         }
     }
 }

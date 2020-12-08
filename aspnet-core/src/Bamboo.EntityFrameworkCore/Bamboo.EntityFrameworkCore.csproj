@@ -1,41 +1,23 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <RootNamespace>Bamboo</RootNamespace>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <DefineConstants>HAS_DB_POSTGRESQL;</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Migrations\20180726102624_Upgrade_ABP_380.cs" />
-    <Compile Remove="Migrations\20180927062408_test.cs" />
-    <Compile Remove="Migrations\20190111071724_Upgraded_To_Abp_v4_1_0.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Abp.ZeroCore.IdentityServer4.vNext.EntityFrameworkCore" Version="5.13.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="3.1.4" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="3.1.4" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite" Version="3.1.5" />
+<Project Sdk="Microsoft.NET.Sdk">
 
-  </ItemGroup>
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Bamboo</RootNamespace>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\bambooshared\Bamboo.Base.Core\Bamboo.Base.Core.csproj" />
-    <ProjectReference Include="..\..\..\thirdParty\bamboomodules\Bamboo.Base\Bamboo.Base.Core\Bamboo.Base.Core.csproj" />
-    <ProjectReference Include="..\Bamboo.Core\Bamboo.Core.csproj" />
+    <ProjectReference Include="..\Bamboo.Domain\Bamboo.Domain.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.EntityFrameworkCore" Version="4.0.0" />
   </ItemGroup>
+
 </Project>
