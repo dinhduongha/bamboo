@@ -250,3 +250,11 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Bamboo
+src/Bamboo.Web/Logs/*
+src/Bamboo.Web.Host/Logs/*
+src/Bamboo.IdentityServer/Logs/*
+src/Bamboo.HttpApi.Host/Logs/*
+src/Bamboo.HttpApi.Host/Logs/*
+src/Bamboo.DbMigrator/Logs/*

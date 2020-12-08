@@ -1,16 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
   <PropertyGroup>
-    <VersionPrefix>1.0.0.0</VersionPrefix>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <AssemblyName>Bamboo.Application</AssemblyName>
-    <PackageId>Bamboo.Application</PackageId>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Bamboo</RootNamespace>
   </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Bamboo.Core\Bamboo.Core.csproj" />
+    <ProjectReference Include="..\Bamboo.Domain\Bamboo.Domain.csproj" />
+    <ProjectReference Include="..\Bamboo.Application.Contracts\Bamboo.Application.Contracts.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="4.0.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="4.0.0" />
+  </ItemGroup>
+
 </Project>
