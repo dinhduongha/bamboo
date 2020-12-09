@@ -13,6 +13,7 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.IdentityServer;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Abp.Guids;
 
 namespace Bamboo
 {
@@ -33,6 +34,15 @@ namespace Bamboo
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+#if HAS_DB_POSTGRESQL
+            Configure<AbpSequentialGuidGeneratorOptions>(options =>
+            {
+                options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsString;
+            });
+#endif
+            //context.Services.AddTransient<IGuidGenerator, MySequentialGuidGenerator>();
+            //context.Services.Replace(ServiceDescriptor.Transient<IGuidGenerator, MySequentialGuidGenerator>());
+
             Configure<AbpMultiTenancyOptions>(options =>
             {
                 options.IsEnabled = MultiTenancyConsts.IsEnabled;

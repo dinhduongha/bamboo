@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bamboo.Base.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bamboo.Base.HttpApi", "..\thirdParty\bamboomodules\Bamboo.Base\src\Bamboo.Base.HttpApi\Bamboo.Base.HttpApi.csproj", "{395768DD-597D-4367-AD4E-41991D5321F9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bamboo.Common.Shared", "..\thirdParty\bamboomodules\Bamboo.Common.Shared\Bamboo.Common.Shared.csproj", "{1BED3458-5EB2-4F93-92B9-08F41AE749D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{395768DD-597D-4367-AD4E-41991D5321F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395768DD-597D-4367-AD4E-41991D5321F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{395768DD-597D-4367-AD4E-41991D5321F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BED3458-5EB2-4F93-92B9-08F41AE749D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BED3458-5EB2-4F93-92B9-08F41AE749D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BED3458-5EB2-4F93-92B9-08F41AE749D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BED3458-5EB2-4F93-92B9-08F41AE749D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +180,7 @@ Global
 		{DA433245-217C-4620-932C-F1F89DF54A0C} = {99369483-7AB8-43FA-AF9B-35E16C2AAD55}
 		{E9742CA3-5525-497C-B4F4-DBA26FAD8B2C} = {99369483-7AB8-43FA-AF9B-35E16C2AAD55}
 		{395768DD-597D-4367-AD4E-41991D5321F9} = {99369483-7AB8-43FA-AF9B-35E16C2AAD55}
+		{1BED3458-5EB2-4F93-92B9-08F41AE749D5} = {99369483-7AB8-43FA-AF9B-35E16C2AAD55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

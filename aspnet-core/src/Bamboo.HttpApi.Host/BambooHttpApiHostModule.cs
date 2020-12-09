@@ -154,6 +154,7 @@ namespace Bamboo
                 options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
                 options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
                 options.Languages.Add(new LanguageInfo("es", "es", "Español", "es"));
+                options.Languages.Add(new LanguageInfo("vi-VN", "vi-VN", "Tiếng Việt", "vi"));
             });
         }
 

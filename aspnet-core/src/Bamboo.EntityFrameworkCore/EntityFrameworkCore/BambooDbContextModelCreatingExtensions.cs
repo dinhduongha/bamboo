@@ -17,6 +17,15 @@ namespace Bamboo.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
+
+#if HAS_DB_POSTGRESQL
+            builder.UseSerialColumns();
+            // builder.StringSize();
+            // builder.PostgreSQLDataType();
+            // builder.SnakeCase();
+            // Change to lower case:
+            // https://github.com/abpframework/abp/issues/2131
+#endif
         }
     }
 }

@@ -6,7 +6,9 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Bamboo</RootNamespace>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <DefineConstants>HAS_DB_POSTGRESQL</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bamboo.Domain.Shared\Bamboo.Domain.Shared.csproj" />
   </ItemGroup>

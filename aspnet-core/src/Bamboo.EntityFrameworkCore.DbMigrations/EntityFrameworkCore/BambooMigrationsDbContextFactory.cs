@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 
 namespace Bamboo.EntityFrameworkCore
@@ -14,10 +15,15 @@ namespace Bamboo.EntityFrameworkCore
             BambooEfCoreEntityExtensionMappings.Configure();
 
             var configuration = BuildConfiguration();
-
+#if HAS_DB_POSTGRESQL
+            var builder = new DbContextOptionsBuilder<BambooMigrationsDbContext>()
+                .UseNpgsql(configuration.GetConnectionString("Default"), o => o.UseNetTopologySuite())
+                //.ReplaceService<IMigrationsSqlGenerator, MyPostgresMigrationsSqlGenerator>()
+                ;
+#else
             var builder = new DbContextOptionsBuilder<BambooMigrationsDbContext>()
                 .UseSqlServer(configuration.GetConnectionString("Default"));
-
+#endif
             return new BambooMigrationsDbContext(builder.Options);
         }
 
